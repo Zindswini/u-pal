@@ -1,4 +1,4 @@
-# Starting point
+# u-pal
 
 [![build-ublue](https://github.com/zindswini/u-pal/actions/workflows/build.yml/badge.svg)](https://github.com/zindswini/u-pal/actions/workflows/build.yml)
 
