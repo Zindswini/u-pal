@@ -41,8 +41,8 @@ rpm:
   # so that your repos automatically use your image's actual Fedora version,
   # which greatly simplifies future maintenance of your custom recipe.
   repos:
-    - https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/repo/fedora-%FEDORA_VERSION%/kylegospo-bazzite-fedora-%FEDORA_VERSION%.repo -O /etc/yum.repos.d/_copr_kylegospo-bazzite.repo
-    - https://copr.fedorainfracloud.org/coprs/kylegospo/hl2linux-selinux/repo/fedora-%FEDORA_VERSION%/kylegospo-hl2linux-selinux-fedora-%FEDORA_VERSION%.repo -O /etc/yum.repos.d/_copr_kylegospo-hl2linux-selinux.repo
+    - https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/repo/fedora-%FEDORA_VERSION%/kylegospo-bazzite-fedora-%FEDORA_VERSION%.repo
+    - https://copr.fedorainfracloud.org/coprs/kylegospo/hl2linux-selinux/repo/fedora-%FEDORA_VERSION%/kylegospo-hl2linux-selinux-fedora-%FEDORA_VERSION%.repo 
   # Example (which also demonstrates version number expansion):
   # - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%FEDORA_VERSION%/atim-starship-fedora-%FEDORA_VERSION%.repo
 
