@@ -1,11 +1,11 @@
 # This file can only be edited inside the uBlue image's git repository.
 
 # The image will be at "ghcr.io/yourusername/name".
-name: startingpoint
+name: u-pal
 
 # The native container image to build on top of.
 # Warning: Non-uBlue images might not work properly, due to missing components.
-base-image: ghcr.io/ublue-os/silverblue-main
+base-image: ghcr.io/ublue-os/kinoite-nvidia
 
 # What Fedora version to use. Use an explicit version or `latest`.
 # If you use `latest`, you will be automatically updated to the next major
@@ -14,7 +14,7 @@ base-image: ghcr.io/ublue-os/silverblue-main
 fedora-version: 38
 
 # This description will be visible in the container metadata.
-description: A starting point for further customization of uBlue images. Make your own! https://ublue.it/making-your-own/
+description: Zindswin's personal ublue customizations. A mix of Bazzite(steamos) and personal desktop tools.
 
 # These scripts will be executed during the container build.
 # Place scripts in the "scripts/" dir and put the corresponding filenames here.
@@ -46,8 +46,9 @@ rpm:
   # so that your repos automatically use your image's actual Fedora version,
   # which greatly simplifies future maintenance of your custom recipe.
   repos:
-    # Example (which also demonstrates version number expansion):
-    # - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%FEDORA_VERSION%/atim-starship-fedora-%FEDORA_VERSION%.repo
+    - https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/repo/fedora-%FEDORA_VERSION%/kylegospo-bazzite-fedora-%FEDORA_VERSION%.repo
+    - https://copr.fedorainfracloud.org/coprs/kylegospo/webapp-manager/repo/fedora-%FEDORA_VERSION%/kylegospo-webapp-manager-fedora-%FEDORA_VERSION%.repo
+    - https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-%FEDORA_VERSION%/kylegospo-system76-scheduler-fedora-%FEDORA_VERSION%.repo
 
   # These RPMs will be installed from your enabled repositories (Fedora's own
   # repos, extra "repos" you've added, etc). The installation is automatically
@@ -55,15 +56,23 @@ rpm:
   # at the "system level" in the final image.
   install:
     # Needed for yafti (the first boot installer). Remove if you're not using yafti.
-    - python3-pip
+    # - python3-pip
     # GNOME's GTK4 theme, Libadwaita. Already included in Silverblue, but not
     # other spins. You can remove if you aren't using yafti, but many native
     # apps and binaries require it, so it's a good idea to always include it
     # if you ever download or compile any custom software on your machine.
     - libadwaita
-    # Add your own below:
-    # Example:
-    # - tilix
+    - steamdeck-kde-themes
+    - duperemove
+    - system76-scheduler
+    - btop
+    - fish
+    - kate
+    - webapp-manager
+    - gamescope # Personal preference, I use it ouside of steam occasionally
+    - mesa-libGLU # For davinci resolve
+    - virt-manager # Because it doesn't work in a container
+    - https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm
 
   # These RPMs will be removed from the system image. This step happens during
   # image build, BEFORE installing custom RPMs (from the "rpm.install" category).
@@ -71,13 +80,14 @@ rpm:
     # Remove the native firefox (from Fedora) in favor of the Flatpak.
     - firefox
     - firefox-langpacks
+    - toolbox
 
 # Configuration for the "first boot" experience, which is available after login.
 firstboot:
   # Whether to embed "yafti" into the OS image and configure it to autostart,
   # which is the preferred uBlue "first boot" GUI. Set this to "false" if you've
   # decided to use a different solution instead.
-  yafti: true
+  yafti: false
 
   # These Flatpaks will be suggested for install after user login, via the yafti
   # "first boot" GUI. Everything below will be merged into the "yafti.yml" config
@@ -87,5 +97,6 @@ firstboot:
   # the "just setup-flatpaks" command from our "custom.just" template file.
   # This is just an example selection:
   flatpaks:
-    - io.github.celluloid_player.Celluloid
-    - org.kde.krita
+    - org.mozilla.Firefox
+    - org.github.tchx84.Flatseal
+    - com.github.k4zmu2a.spacecadetpinball
