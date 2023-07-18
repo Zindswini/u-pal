@@ -70,6 +70,8 @@ rpm:
     - kate
     - webapp-manager
     - podman-docker
+    - docker-compose
+    - mpv
     - gamescope # Personal preference, I use it ouside of steam occasionally
     - mesa-libGLU # For davinci resolve
     - virt-manager # Because it doesn't work in a container
